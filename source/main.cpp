@@ -9,7 +9,7 @@
 #define EXPORT extern "C" EMSCRIPTEN_KEEPALIVE
 
 double doFancyAlgorithm() {
-   std::cerr << "out of band message"<<std::endl;
+   std::cerr << "out of band message";
    return 42;
 }
 

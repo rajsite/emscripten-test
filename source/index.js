@@ -6,7 +6,9 @@ class EmscriptenTest {
     }
 
     fancyAlgorithm () {
-        return this._Module._fancyAlgorithm();
+        const result = this._Module._fancyAlgorithm();
+        this._Module.emscriptenTestFlush();
+        return result;
     }
 }
 
