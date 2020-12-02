@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script type="module">
+        import {createEmscriptenTest} from '../source/index.js';
+        (async function () {
+            const emscriptenTest = await createEmscriptenTest();
+            const result = emscriptenTest.fancyAlgorithm();
+            text_output.insertAdjacentHTML('beforeend', `<span>${result}</span>`);
+        }()).catch(ex => console.error(ex));
+    </script>
+</head>
+<body>
+    <input id="text_input" type="text">
+    <div id="text_output"></div>
+</body>
+</html>

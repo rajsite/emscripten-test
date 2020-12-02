@@ -1,0 +1,21 @@
+{
+    "name": "emscripten-test",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "install:emsdk": "cd emsdk && emsdk install sdk-2.0.5-64bit && emsdk activate sdk-2.0.5-64bit",
+        "build:clean": "rimraf dist && mkdirp dist",
+        "build:wasm": "cd emsdk && emsdk_env && cd .. && emcc -std=c++14 -pedantic-errors -Wall -Wextra -Werror -Wno-long-long -s STANDALONE_WASM -s NO_DYNAMIC_EXECUTION=1 -s MODULARIZE=1 -s EXPORT_ES6=1 --minify 0 -s INVOKE_RUN=1 -s FILESYSTEM=0 -s EXPORT_NAME=emscriptenTest --pre-js source/pre.js -s EXPORTED_FUNCTIONS=\"['_malloc', '_free']\" -s EXTRA_EXPORTED_RUNTIME_METHODS=\"['stackAlloc', 'stackSave', 'stackRestore', 'stringToUTF8', 'UTF8ArrayToString']\" -O3 -lm -o dist/emscripten-test.js source/main.cpp",
+        "build:umd": "rollup source/index.js --format umd --name emscriptenTestHelpers --file dist/emscripten-test.umd.js",
+        "build": "npm run build:clean && npm run build:wasm && npm run build:umd",
+        "test:wasmer": "wasmer-js run dist/emscripten-test.wasm",
+        "test:browser-module": "http-server -c-1 -p 8010 -o examples/browser-module.html"
+    },
+    "devDependencies": {
+        "@wasmer/cli": "^0.12.0",
+        "http-server": "^0.12.3",
+        "mkdirp": "^1.0.4",
+        "rimraf": "^3.0.2",
+        "rollup": "^2.34.0"
+    }
+}
