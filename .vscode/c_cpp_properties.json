@@ -10,7 +10,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "${workspaceFolder}/emsdk/upstream/bin/clang++.exe",
+            "compilerPath": "${workspaceFolder}/emsdk/upstream/bin/clang++",
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "clang-x64"
